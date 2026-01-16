@@ -1,0 +1,136 @@
+---
+import "../styles/global.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Qurb E Muhammad Syed</title>
+  </head>
+
+  <body class="text-white antialiased">
+    <!-- Background layers -->
+    <div class="nebula-glow" aria-hidden="true"></div>
+    <div id="starsAurora" class="star-layer aurora" aria-hidden="true"></div>
+    <div id="starsFar" class="star-layer far" aria-hidden="true"></div>
+    <div id="starsNear" class="star-layer near" aria-hidden="true"></div>
+
+    <!-- Fixed glass nav -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 border-b border-white/10
+             bg-black/35 backdrop-blur-xl backdrop-saturate-150"
+    >
+      <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a
+          href="#top"
+          aria-label="Go to top"
+          class="group text-sm font-semibold tracking-wide text-white/80 hover:text-white transition"
+        >
+          <span
+            class="relative inline-block
+                   after:absolute after:-bottom-1 after:left-0
+                   after:h-[2px] after:w-0 after:bg-emerald-400
+                   after:transition-all after:duration-300
+                   group-hover:after:w-full"
+          >
+            Kirby
+          </span>
+        </a>
+
+        <div class="flex gap-6 text-sm text-gray-300">
+          <a href="#about" class="hover:text-white transition">About</a>
+          <a href="#projects" class="hover:text-white transition">Projects</a>
+          <a href="https://github.com/" target="_blank" class="hover:text-white transition">
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll progress -->
+      <div class="h-[2px] w-full">
+        <div
+          id="scrollProgress"
+          class="h-full bg-emerald-500"
+          style="width: 0%"
+        ></div>
+      </div>
+    </nav>
+
+    <!-- Page content -->
+    <div class="pt-14">
+      <slot />
+    </div>
+
+    <!-- Back to top -->
+    <button
+      id="backToTop"
+      class="fixed bottom-6 right-6 z-50 hidden rounded-full
+             bg-white/10 backdrop-blur px-4 py-3 text-white
+             hover:bg-white/20 transition"
+      aria-label="Back to top"
+    >
+      ↑
+    </button>
+
+    <!-- Scripts -->
+    <script is:inline>
+      // back to top
+      const btn = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        btn.classList.toggle("hidden", window.scrollY < 200);
+      });
+      btn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // scroll progress
+      const progressBar = document.getElementById("scrollProgress");
+      function updateProgress() {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        progressBar.style.width = (window.scrollY / h) * 100 + "%";
+      }
+      window.addEventListener("scroll", updateProgress);
+      updateProgress();
+
+      // parallax stars
+      
+      const far = document.getElementById("starsFar");
+      const near = document.getElementById("starsNear");
+      function parallax() {
+        const y = window.scrollY;
+        far.style.transform = `translateY(${y * 0.06}px)`;
+        near.style.transform = `translateY(${y * 0.12}px)`;
+        requestAnimationFrame(parallax);
+      }
+      requestAnimationFrame(parallax);
+
+
+      // shooting stars
+      function spawnStar() {
+        const s = document.createElement("div");
+        s.className = "shooting-star";
+        s.style.left = Math.random() * window.innerWidth + "px";
+        s.style.top = Math.random() * window.innerHeight * 0.25 + "px";
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 1400);
+      }
+      setInterval(() => Math.random() < 0.6 && spawnStar(), 12000);
+    </script>
+
+    <script is:inline>
+      // card glow tracking
+      document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("mousemove", e => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty("--x", `${e.clientX - r.left}px`);
+          card.style.setProperty("--y", `${e.clientY - r.top}px`);
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.removeProperty("--x");
+          card.style.removeProperty("--y");
+        });
+      });
+    </script>
+  </body>
+</html>
