@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro';
 import "../styles/global.css";
 ---
 
@@ -7,6 +8,7 @@ import "../styles/global.css";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Qurb E Muhammad Syed</title>
+    
   </head>
 
   <body class="text-white antialiased">
@@ -132,5 +134,6 @@ import "../styles/global.css";
         });
       });
     </script>
+    <Analytics />
   </body>
 </html>
