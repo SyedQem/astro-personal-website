@@ -7,12 +7,18 @@ featured: true
 ---
 
 ## Overview
-This is an interactive app I developed that keeps track of shipping containers along with their contents using RFIDs. It also utilizes the concept of IOT. 
+This project tracks shipping containers and their contents using RFID-style identifiers, with a focus on data correctness and system structure. I built it to practice clean backend design, validation, and modeling real-world constraints in Java.
 
 ## What I built
-- Feature 1
-- Feature 2
-- Feature 3
+- Validation logic for prevention of invalid container states
+
+- Shipment and Container domain model with clear ownership rules
+
+- Command-driven workflow for querying and updating container data
 
 ## Design notes
-Add a short section on structure, tradeoffs, and validation.
+- Emphasized clear object boundaries to keep domain logic isolated
+
+- Used validation at the model layer instead of relying on callers
+
+- Optimized for readability and extension over premature performance tricks
