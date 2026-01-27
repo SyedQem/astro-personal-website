@@ -8,6 +8,22 @@ import "../styles/global.css";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Qurb E Muhammad Syed</title>
+    <slot name="head" />
+    <meta name="description" content="Backend & systems-focused software engineering student. Projects in Java, C++, Python, SQL. Performance-first portfolio built with Astro." />
+
+    <!-- Open Graph (LinkedIn, Facebook) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Qurb E Muhammad Syed — Backend & Systems" />
+    <meta property="og:description" content="Projects in Java, C++, Python, SQL. Clean, performance-minded engineering." />
+    <meta property="og:url" content="https://kirbydoestech.vercel.app/" />
+    <meta property="og:image" content="https://kirbydoestech.vercel.app/og.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Qurb E Muhammad Syed — Backend & Systems" />
+    <meta name="twitter:description" content="Projects in Java, C++, Python, SQL. Clean, performance-minded engineering." />
+    <meta name="twitter:image" content="https://kirbydoestech.vercel.app/og.png" />
+
     
   </head>
 
@@ -26,8 +42,8 @@ import "../styles/global.css";
     <div class="w-full px-6 h-14 flex items-center justify-between">
 
         <a
-          href="#top"
-          aria-label="Go to top"
+          href="/"
+          aria-label="Go home"
           class="group text-sm font-semibold tracking-wide text-white/80 hover:text-white transition"
         >
           <span
@@ -42,12 +58,14 @@ import "../styles/global.css";
         </a>
 
         <div class="flex gap-6 text-sm text-gray-300">
-          <a href="#about" class="hover:text-white transition">About</a>
-          <a href="#projects" class="hover:text-white transition">Projects</a>
-          <a href="https://github.com/SyedQem" target="_blank" class="hover:text-white transition">
+          <a href="/" class="hover:text-white transition">Home</a>
+          <a href="/#about" class="hover:text-white transition">About</a>
+          <a href="/#projects" class="hover:text-white transition">Projects</a>
+          <a href="https://github.com/SyedQem" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">
             GitHub
           </a>
         </div>
+        
       </div>
 
       <!-- Scroll progress -->

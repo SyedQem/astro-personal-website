@@ -7,14 +7,21 @@ featured: true
 ---
 
 ## Overview
-A relational database designed around a health and fitness domain, built to model real-world entities cleanly and support meaningful queries. The focus was correctness, integrity, and designing a schema that stays maintainable as the system grows.
+A database-backed project built around a health and fitness domain using PostgreSQL and a Java ORM. The focus was designing a clean, normalized relational schema, enforcing data integrity, and supporting realistic queries that reflect real-world usage.
 
 ## What I built
-- A structured relational schema modeling core entities and relationships in the domain
-- Constraints and rules to enforce data integrity (e.g., keys, relationships, validity)
-- SQL queries representing real use cases (tracking, lookup, summaries, and reporting)
+- A normalized relational schema modeling core domain entities and their relationships
+- ORM-based entity models to map domain objects cleanly to relational tables
+- SQL queries representing practical workflows such as tracking, summaries, and reporting
 
 ## Design notes
 - **Normalization-first:** designed tables to reduce redundancy and prevent update anomalies.
-- **Integrity and correctness:** used constraints to enforce rules at the database level.
-- **Query-driven design:** evaluated schema choices based on the kinds of queries the system needs to support.
+- **Integrity at the database layer:** enforced correctness using keys, constraints, and relationships.
+- **ORM as a bridge:** used the ORM to balance object-oriented code with relational structure rather than hiding the database.
+
+## Highlights
+- Used PostgreSQL to support structured relational data with strong integrity guarantees
+- Designed schema and queries around realistic access patterns rather than purely academic examples
+
+
+

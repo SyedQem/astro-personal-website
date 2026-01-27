@@ -6,19 +6,19 @@ repo: "https://github.com/SyedQem/TrackShippingContainers"
 featured: true
 ---
 
+
 ## Overview
-This project tracks shipping containers and their contents using RFID-style identifiers, with a focus on data correctness and system structure. I built it to practice clean backend design, validation, and modeling real-world constraints in Java.
+A Java CLI-based back-end application that tracks shipping containers and their contents using RFID-style identifiers. I built this project to practice clean domain modeling, validation, and designing workflows that prevent invalid system states.
 
 ## What I built
-- Validation logic for prevention of invalid container states
-
-- Shipment and Container domain model with clear ownership rules
-
-- Command-driven workflow for querying and updating container data
+- A shipment and container domain model with clear ownership rules and state transitions
+- Validation logic to prevent invalid container states and inconsistent updates
+- A command-driven CLI workflow for querying and updating container data
 
 ## Design notes
-- Emphasized clear object boundaries to keep domain logic isolated
+- **Explicit domain boundaries:** kept business rules inside domain models instead of scattering logic across commands.
+- **Validation as core behavior:** treated correctness checks as first-class features, not defensive afterthoughts.
+- **Simplicity over abstraction:** optimized for clarity and extension rather than over-engineered patterns.
 
-- Used validation at the model layer instead of relying on callers
 
-- Optimized for readability and extension over premature performance tricks
+

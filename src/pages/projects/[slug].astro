@@ -19,6 +19,22 @@ const { Content } = await render(project);
 
 
 <Layout>
+    <head slot="head">
+        <title>{project.data.title} — Qurb E Muhammad Syed</title>
+      
+        <meta name="description" content={project.data.description} />
+      
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
+        <meta property="og:description" content={project.data.description} />
+        <meta property="og:image" content="https://kirbydoestech.vercel.app/og.png" />
+        <meta property="og:url" content={`https://kirbydoestech.vercel.app/projects/${project.slug}`} />
+      
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
+        <meta name="twitter:description" content={project.data.description} />
+      </head>
+       
   <main class="relative z-10 px-6 py-20">
     <article class="max-w-3xl mx-auto">
       <header class="mb-8">
@@ -36,7 +52,6 @@ const { Content } = await render(project);
 
         <div class="mt-5 flex flex-wrap gap-2">
             {project.data.stack.map((t: string) => <span class="pill">{t}</span>)}
-
         </div>
 
         <div class="mt-6 flex gap-5">
@@ -63,9 +78,23 @@ const { Content } = await render(project);
         </div>
       </header>
 
-      <div class="prose prose-invert max-w-none">
-        <Content />
-      </div>
+      <hr class="my-8 border-white/10" />
+
+      <div class="prose prose-invert max-w-none
+            [&_h2]:mt-10 [&_h2]:mb-4
+            [&_h2]:text-2xl [&_h2]:font-semibold
+            [&_h2]:text-emerald-300
+            [&_h2]:tracking-tight
+            [&_h2]:border-l-2 [&_h2]:border-emerald-500/40 [&_h2]:pl-4
+            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-4
+            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-4
+            [&_li]:my-1
+            [&_p]:leading-relaxed">
+
+<Content />
+</div>
+
+      
     </article>
   </main>
 </Layout>

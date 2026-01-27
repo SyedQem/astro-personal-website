@@ -7,14 +7,15 @@ featured: true
 ---
 
 ## Overview
-This site is my personal hub for presenting projects and writing in a way that is simple, fast, and intentionally designed. I built it end-to-end with a focus on maintainability, clear information hierarchy, and minimal bloat.
+A performance-focused personal portfolio built with Astro and TailwindCSS, designed to present my work clearly and professionally. I built and deployed the site end-to-end with an emphasis on clean structure, fast load times, and easy iteration.
 
 ## What I built
-- A responsive, single-page layout with clear sections (Hero, About, Selected Projects)
-- A design system built from reusable styles (e.g., consistent cards and “pill” tags)
-- A project system that can scale over time (Projects index + individual write-ups)
+- A responsive layout with clear information hierarchy and consistent visual structure
+- A projects system powered by Astro Content Collections (index + per-project deep dives)
+- Continuous deployment via Vercel for fast iteration and reliable hosting
 
 ## Design notes
-- **Performance-first:** chose Astro for a lightweight, content-oriented build and minimal client-side overhead.
-- **Maintainability:** kept the structure simple so adding projects and updating content stays frictionless.
-- **Intentional tradeoffs:** optimized for clarity and speed over unnecessary animations or heavy UI frameworks.
+- **Performance-first:** chose Astro to minimize client-side JavaScript and keep pages lightweight.
+- **Content-driven architecture:** structured the site so new projects are added via markdown, not UI rewrites.
+- **Maintainability over flash:** prioritized clarity, accessibility, and long-term ease of updates.
+
