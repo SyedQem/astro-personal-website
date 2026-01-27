@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://kirbydoestech.vercel.app",
+  site: "https://kirbydoestech.dev",
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
