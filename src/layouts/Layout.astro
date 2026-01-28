@@ -1,13 +1,15 @@
 ---
 import Analytics from '@vercel/analytics/astro';
 import "../styles/global.css";
+const { title = "KirbyDoesTech - Thoughtful Systems" } = Astro.props;
+
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Qurb E Muhammad Syed</title>
+    <title>{title}</title>
     <slot name="head" />
     <meta name="description" content="Backend & systems-focused software engineering student building clean, performance-minded projects in Java, C++, Python, and SQL. Portfolio showcasing thoughtful design, validation, and maintainable systems." />
 
