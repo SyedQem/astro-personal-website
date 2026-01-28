@@ -8,7 +8,7 @@ featured: true
 
 
 ## Overview
-A Java CLI-based back end application that tracks shipping containers and their contents using RFID style identifiers. I built this project as a part of my coursework to practice clean domain-modeling, validation, and designing workflows that prevent invalid system states.
+A Java CLI-based back end application that tracks shipping containers and their contents using RFID style identifiers. I built this project with my team, Uday and Srivathsan (Shout out to the boys!), as a part of my coursework to practice clean domain-modeling, validation, and designing workflows that prevent invalid system states.
 
 ## What I built
 - A shipment and container domain model with clear ownership rules and state transitions
