@@ -19,3 +19,5 @@ A personal portfolio website focused on performance built with Astro and Tailwin
 - **Content-driven architecture:** structured site so new projects are added via markdown, and not by having to rewrite the UI.
 - **Maintainability over flash:** focused on clarity, accessibility, and long-term updateability.
 
+## Future Design Plans
+- **Dedicated About Section:** I plan to introduce a separate "about" section that will go further into detail about me, where I'm from and how I spend my free time.
