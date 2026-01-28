@@ -26,6 +26,17 @@ const { title = "KirbyDoesTech - Thoughtful Systems" } = Astro.props;
     <meta name="twitter:description" content="Projects in Java, C++, Python, SQL. Clean, performance-minded engineering." />
     <meta name="twitter:image" content="https://kirbydoestech.dev/og.png" />
 
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Qurb E Muhammad Syed",
+      "alternateName": ["Kirby", "KirbyDoesTech"],
+      "url": "https://kirbydoestech.dev",
+      "sameAs": [
+        "https://github.com/SyedQem",
+        "https://www.linkedin.com/in/qems"
+      ]
+    })} />
     
   </head>
 
