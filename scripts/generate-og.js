@@ -2,6 +2,7 @@ import fs from "fs";
 import satori from "satori";
 import sharp from "sharp";
 
+// Script to generate og.png image
 const font = fs.readFileSync("./public/fonts/Inter-Bold.ttf");
 
 const svg = await satori(
@@ -60,4 +61,4 @@ await sharp(Buffer.from(svg))
   .png()
   .toFile("./public/og.png");
 
-console.log("✅ og.png generated");
+console.log("og.png generated my glorious king");
