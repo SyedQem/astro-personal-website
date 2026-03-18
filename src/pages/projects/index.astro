@@ -3,9 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const projects: CollectionEntry<"projects">[] = await getCollection("projects");
+const prioritizedSlug = "applykit";
 
-// Optional: newest first if you start using `date` later
-// projects.sort((a, b) => (b.data.date ?? "").localeCompare(a.data.date ?? ""));
+projects.sort((a, b) => {
+  if (a.slug === prioritizedSlug) return -1;
+  if (b.slug === prioritizedSlug) return 1;
+  return 0;
+});
 ---
 
 <Layout>
