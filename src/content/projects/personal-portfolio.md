@@ -3,6 +3,7 @@ title: "Personal Portfolio"
 description: "Performance-focused portfolio built with Astro and Tailwind, designed for clean structure, fast load times, and easy iteration."
 stack: ["Astro", "Tailwind CSS"]
 repo: "https://github.com/SyedQem/astro-personal-website"
+demo: "https://kirbydoestech.dev"
 featured: true
 ---
 

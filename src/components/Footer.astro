@@ -1,0 +1,46 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-border">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+      <div>
+        <a
+          href="/"
+          class="group inline-flex items-center gap-2 font-mono text-sm font-medium text-foreground"
+        >
+          <span class="text-primary">$</span>
+          <span>kirby</span>
+          <span class="text-primary group-hover:animate-pulse">_</span>
+        </a>
+        <p class="mt-2 max-w-md text-xs text-muted-foreground">
+          &copy; {year} qurb e muhammad syed · built with astro, react &amp; tailwind · ottawa, canada
+        </p>
+      </div>
+
+      <nav class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+        <a href="/about" class="hover:text-foreground transition-colors">about</a>
+        <a href="/projects" class="hover:text-foreground transition-colors">projects</a>
+        <a href="/writing" class="hover:text-foreground transition-colors">writing</a>
+        <a href="/now" class="hover:text-foreground transition-colors">now</a>
+        <a
+          href="https://github.com/SyedQem"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors"
+        >
+          github
+        </a>
+        <a
+          href="https://www.linkedin.com/in/qems"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-foreground transition-colors"
+        >
+          linkedin
+        </a>
+      </nav>
+    </div>
+  </div>
+</footer>

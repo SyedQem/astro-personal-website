@@ -1,10 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import { Badge } from "@/components/ui/badge";
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import { Github } from "@/components/BrandIcons";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
-
   return projects.map((p) => ({
     params: { slug: p.slug },
     props: { project: p },
@@ -15,87 +17,92 @@ const { project } = Astro.props as { project: CollectionEntry<"projects"> };
 const { Content } = await render(project);
 ---
 
+<Layout
+  title={`${project.data.title} — qurb e muhammad syed`}
+  description={project.data.description}
+>
+  <head slot="head">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
+    <meta property="og:description" content={project.data.description} />
+    <meta
+      property="og:image"
+      content={`https://kirbydoestech.dev/og/project.png?title=${encodeURIComponent(project.data.title)}&stack=${encodeURIComponent(project.data.stack.join(","))}`}
+    />
+    <meta property="og:site_name" content="kirbydoestech.dev" />
+    <meta
+      property="og:url"
+      content={`https://kirbydoestech.dev/projects/${project.slug}`}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
+    <meta name="twitter:description" content={project.data.description} />
+  </head>
 
-
-
-<Layout>
-    <head slot="head">
-        <title>{project.data.title} — Qurb E Muhammad Syed</title>
-      
-        <meta name="description" content={project.data.description} />
-      
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
-        <meta property="og:description" content={project.data.description} />
-        <meta property="og:image" content={`https://kirbydoestech.dev/og/project.png?title=${encodeURIComponent(project.data.title)}&stack=${encodeURIComponent(project.data.stack.join(","))}`} />
-        <meta property="og:site_name" content="kirbydoestech.dev" />
-        <meta property="og:url" content={`https://kirbydoestech.dev/projects/${project.slug}`} />
-      
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${project.data.title} — Qurb E Muhammad Syed`} />
-        <meta name="twitter:description" content={project.data.description} />
-      </head>
-       
-  <main class="relative z-10 px-6 py-20">
-    <article class="max-w-3xl mx-auto">
-      <header class="mb-8">
-
-        <a
+  <main class="relative z-10 px-6 pt-24 pb-24">
+    <article class="mx-auto max-w-3xl">
+      <a
         href="/projects"
-        class="inline-block text-sm text-gray-400 hover:text-gray-200"
-        >
-        ← Back to projects
-        </a>
+        class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+      >
+        <ArrowLeft className="h-3.5 w-3.5" />
+        all projects
+      </a>
 
+      <header class="mt-8">
+        {project.data.role && (
+          <div class="font-mono text-xs uppercase tracking-widest text-primary">
+            {project.data.role}
+          </div>
+        )}
+        <h1 class="mt-2 text-4xl font-semibold tracking-tight md:text-5xl">
+          {project.data.title}
+        </h1>
+        <p class="mt-4 text-lg leading-relaxed text-muted-foreground">
+          {project.data.description}
+        </p>
 
-        <h1 class="text-4xl font-bold">{project.data.title}</h1>
-        <p class="mt-3 text-gray-300">{project.data.description}</p>
+        {project.data.stack.length > 0 && (
+          <div class="mt-5 flex flex-wrap gap-1.5">
+            {project.data.stack.map((t: string) => (
+              <Badge variant="mono">{t}</Badge>
+            ))}
+          </div>
+        )}
 
-        <div class="mt-5 flex flex-wrap gap-2">
-            {project.data.stack.map((t: string) => <span class="pill">{t}</span>)}
-        </div>
-
-        <div class="mt-6 flex gap-5">
-          {project.data.repo && (
-            <a
-              href={project.data.repo}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-emerald-400 hover:text-emerald-300"
-            >
-              View repository →
-            </a>
-          )}
-          {project.data.demo && (
-            <a
-              href={project.data.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sm text-emerald-400 hover:text-emerald-300"
-            >
-              Live demo →
-            </a>
-          )}
-        </div>
+        {(project.data.repo || project.data.demo) && (
+          <div class="mt-6 flex flex-wrap gap-3">
+            {project.data.repo && (
+              <a
+                href={project.data.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-9 items-center gap-2 rounded-lg border border-border bg-card/60 px-4 text-sm text-foreground transition-all hover:bg-accent"
+              >
+                <Github className="h-3.5 w-3.5" />
+                repo
+              </a>
+            )}
+            {project.data.demo && (
+              <a
+                href={project.data.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-9 items-center gap-2 rounded-lg border border-border bg-card/60 px-4 text-sm text-foreground transition-all hover:bg-accent"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                live demo
+              </a>
+            )}
+          </div>
+        )}
       </header>
 
-      <hr class="my-8 border-white/10" />
+      <hr class="my-10 border-border" />
 
-      <div class="prose prose-invert max-w-none
-            [&_h2]:mt-10 [&_h2]:mb-4
-            [&_h2]:text-2xl [&_h2]:font-semibold
-            [&_h2]:text-emerald-300
-            [&_h2]:tracking-tight
-            [&_h2]:border-l-2 [&_h2]:border-emerald-500/40 [&_h2]:pl-4
-            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-4
-            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-4
-            [&_li]:my-1
-            [&_p]:leading-relaxed">
-
-<Content />
-</div>
-
-      
+      <div class="prose-clean">
+        <Content />
+      </div>
     </article>
   </main>
 </Layout>
