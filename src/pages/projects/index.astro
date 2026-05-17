@@ -1,5 +1,7 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import { ProjectCard } from "@/components/ProjectCard";
+import { Reveal } from "@/components/Reveal";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const projects: CollectionEntry<"projects">[] = await getCollection("projects");
@@ -12,55 +14,38 @@ projects.sort((a, b) => {
 });
 ---
 
-<Layout>
-  <main class="relative z-10 px-6 py-20">
-    <div class="max-w-4xl mx-auto">
-      <header class="text-center">
-        <h1 class="text-4xl font-bold">Projects</h1>
-        <p class="mt-3 text-gray-300">
-          A complete list of my projects, with deeper write-ups for each one.
-        </p>
-      </header>
+<Layout title="projects — qurb e muhammad syed">
+  <main class="relative z-10">
+    <section class="mx-auto max-w-6xl px-6 pt-24 pb-12">
+      <div class="font-mono text-xs uppercase tracking-widest text-primary">
+        projects
+      </div>
+      <h1 class="mt-2 text-4xl font-semibold tracking-tight md:text-5xl">
+        <span class="text-gradient">things i've shipped</span>
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+        a working list of what i've built — finished, in-flight, or somewhere in between.
+        click in for the writeups.
+      </p>
+    </section>
 
-      <div class="mt-10 grid gap-6">
-        {projects.map((p) => (
-          <article class="project-card p-8">
-            <h2 class="text-xl font-semibold">{p.data.title}</h2>
-            <p class="mt-2 text-gray-300">{p.data.description}</p>
-
-            <div class="mt-4 flex flex-wrap gap-5">
-              <a
-                href={`/projects/${p.slug}`}
-                class="text-sm text-emerald-400 hover:text-emerald-300"
-              >
-                Read more →
-              </a>
-
-              {p.data.repo && (
-                <a
-                  href={p.data.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-emerald-400 hover:text-emerald-300"
-                >
-                  View repository →
-                </a>
-              )}
-
-              {p.data.demo && (
-                <a
-                  href={p.data.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-sm text-emerald-400 hover:text-emerald-300"
-                >
-                  Live demo →
-                </a>
-              )}
-            </div>
-          </article>
+    <section class="mx-auto max-w-6xl px-6 pb-24">
+      <div class="grid gap-5 md:grid-cols-2">
+        {projects.map((p, i) => (
+          <Reveal client:visible delay={i * 0.06}>
+            <ProjectCard
+              title={p.data.title}
+              description={p.data.description}
+              slug={p.slug}
+              stack={p.data.stack}
+              repo={p.data.repo}
+              demo={p.data.demo}
+              role={p.data.role}
+              featured={p.data.featured}
+            />
+          </Reveal>
         ))}
       </div>
-    </div>
+    </section>
   </main>
 </Layout>

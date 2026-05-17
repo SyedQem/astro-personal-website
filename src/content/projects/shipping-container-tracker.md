@@ -3,7 +3,7 @@ title: "Shipping Container Tracker"
 description: "Java back-end application emphasizing clean OOP, validation, and maintainable structure."
 stack: ["Java"]
 repo: "https://github.com/SyedQem/TrackShippingContainers"
-featured: true
+featured: false
 ---
 
 

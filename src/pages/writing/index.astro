@@ -1,0 +1,82 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { Badge } from "@/components/ui/badge";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+const allPosts: CollectionEntry<"blog">[] = await getCollection("blog");
+const isProd = import.meta.env.PROD;
+const posts = allPosts
+  .filter((p) => !isProd || !p.data.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<Layout
+  title="writing — qurb e muhammad syed"
+  description="notes on backend, systems, and the craft of building software."
+>
+  <main class="relative z-10">
+    <section class="mx-auto max-w-3xl px-6 pt-24 pb-12">
+      <div class="font-mono text-xs uppercase tracking-widest text-primary">
+        writing
+      </div>
+      <h1 class="mt-2 text-4xl font-semibold tracking-tight md:text-5xl">
+        <span class="text-gradient">notes &amp; essays</span>
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">
+        thoughts on backend, systems, taste, and the craft of building software.
+        occasional, never sponsored.
+      </p>
+    </section>
+
+    <section class="mx-auto max-w-3xl px-6 pb-24">
+      {posts.length === 0 ? (
+        <div class="rounded-xl border border-dashed border-border bg-card/20 p-10 text-center text-muted-foreground">
+          <p>nothing here yet — first post coming soon.</p>
+        </div>
+      ) : (
+        <div class="space-y-3">
+          {posts.map((post) => (
+            <a
+              href={`/writing/${post.slug}`}
+              class="card-glow group flex flex-col gap-2 rounded-xl border border-border bg-card/60 p-6 backdrop-blur-sm transition-all"
+            >
+              <div class="flex flex-wrap items-center gap-3 text-xs">
+                <time class="font-mono text-muted-foreground">
+                  {formatDate(post.data.date)}
+                </time>
+                {post.data.draft && (
+                  <Badge variant="outline">draft</Badge>
+                )}
+                <div class="flex flex-wrap gap-1.5">
+                  {post.data.tags.map((t) => (
+                    <Badge variant="mono">{t}</Badge>
+                  ))}
+                </div>
+              </div>
+              <h2 class="text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                {post.data.title}
+              </h2>
+              <p class="text-sm text-muted-foreground">
+                {post.data.description}
+              </p>
+              <div class="mt-2 inline-flex items-center gap-1 font-mono text-xs text-primary">
+                read →
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </section>
+  </main>
+</Layout>

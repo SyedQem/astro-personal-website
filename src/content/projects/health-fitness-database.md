@@ -3,7 +3,7 @@ title: "Health & Fitness Database"
 description: "Relational database project focused on schema design, constraints, normalization, and writing practical SQL queries."
 stack: ["SQL", "Relational Modeling"]
 repo: "https://github.com/Uday-Arya/COMP3005-Project-Group101"
-featured: true
+featured: false
 ---
 
 ## Overview

@@ -1,0 +1,213 @@
+---
+/**
+ * BgPattern — pure-CSS background pattern with variants + masks.
+ * Ported from efferd's "bg-pattern" pattern (21st.dev).
+ *
+ * Variants (visual style):
+ *   - "grid"             : square grid lines
+ *   - "dots"             : dot grid
+ *   - "dashed-grid"      : dashed square grid
+ *   - "diagonal-stripes" : 45° repeating stripes
+ *   - "vertical-lines"   : evenly-spaced vertical lines
+ *   - "horizontal-lines" : evenly-spaced horizontal lines
+ *
+ * Masks (where the pattern fades to transparent):
+ *   - "none"
+ *   - "fade-edges"  : radial fade from center (pattern visible in middle)
+ *   - "fade-out"    : radial fade to transparent at edges (default — opposite of fade-edges)
+ *   - "fade-top"
+ *   - "fade-bottom"
+ *   - "fade-x"
+ *   - "fade-y"
+ *
+ * Theme-aware: uses --foreground at low alpha for the lines so it adapts
+ * to light/dark automatically.
+ */
+export interface Props {
+  variant?:
+    | "grid"
+    | "dots"
+    | "dashed-grid"
+    | "diagonal-stripes"
+    | "vertical-lines"
+    | "horizontal-lines";
+  mask?:
+    | "none"
+    | "fade-edges"
+    | "fade-out"
+    | "fade-top"
+    | "fade-bottom"
+    | "fade-x"
+    | "fade-y";
+  size?: number; // tile size in px
+  className?: string;
+}
+
+const {
+  variant = "grid",
+  mask = "fade-out",
+  size = 32,
+  className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "bg-pattern",
+    `bg-pattern--${variant}`,
+    `bg-pattern--mask-${mask}`,
+    className,
+  ]}
+  style={`--bp-size: ${size}px;`}
+  aria-hidden="true"
+  transition:persist
+>
+</div>
+
+<style is:global>
+  .bg-pattern {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    /* per-theme line color, low alpha */
+    --bp-line: color-mix(in oklch, var(--foreground) 10%, transparent);
+    --bp-line-strong: color-mix(in oklch, var(--foreground) 16%, transparent);
+  }
+
+  .dark .bg-pattern {
+    --bp-line: color-mix(in oklch, var(--foreground) 7%, transparent);
+    --bp-line-strong: color-mix(in oklch, var(--foreground) 11%, transparent);
+  }
+
+  /* ============== VARIANTS ============== */
+
+  .bg-pattern--grid {
+    background-image:
+      linear-gradient(to right, var(--bp-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--bp-line) 1px, transparent 1px);
+    background-size: var(--bp-size) var(--bp-size);
+  }
+
+  .bg-pattern--dots {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      var(--bp-line-strong) 1px,
+      transparent 0
+    );
+    background-size: var(--bp-size) var(--bp-size);
+  }
+
+  .bg-pattern--dashed-grid {
+    background-image:
+      repeating-linear-gradient(
+        to right,
+        var(--bp-line) 0 6px,
+        transparent 6px 12px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        var(--bp-line) 0 6px,
+        transparent 6px 12px
+      );
+    background-size: var(--bp-size) var(--bp-size);
+  }
+
+  .bg-pattern--diagonal-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      var(--bp-line) 0 1px,
+      transparent 1px 14px
+    );
+  }
+
+  .bg-pattern--vertical-lines {
+    background-image: linear-gradient(
+      to right,
+      var(--bp-line) 1px,
+      transparent 1px
+    );
+    background-size: var(--bp-size) 100%;
+  }
+
+  .bg-pattern--horizontal-lines {
+    background-image: linear-gradient(
+      to bottom,
+      var(--bp-line) 1px,
+      transparent 1px
+    );
+    background-size: 100% var(--bp-size);
+  }
+
+  /* ============== MASKS ============== */
+
+  .bg-pattern--mask-fade-edges {
+    mask-image: radial-gradient(
+      ellipse 75% 75% at 50% 50%,
+      black 30%,
+      transparent 95%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 75% 75% at 50% 50%,
+      black 30%,
+      transparent 95%
+    );
+  }
+
+  .bg-pattern--mask-fade-out {
+    mask-image: radial-gradient(
+      ellipse 90% 80% at 50% 30%,
+      black 20%,
+      transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 90% 80% at 50% 30%,
+      black 20%,
+      transparent 100%
+    );
+  }
+
+  .bg-pattern--mask-fade-top {
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  }
+
+  .bg-pattern--mask-fade-bottom {
+    mask-image: linear-gradient(to top, black, transparent);
+    -webkit-mask-image: linear-gradient(to top, black, transparent);
+  }
+
+  .bg-pattern--mask-fade-x {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+
+  .bg-pattern--mask-fade-y {
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+</style>
