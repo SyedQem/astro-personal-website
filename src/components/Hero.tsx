@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { TerminalBadge } from "@/components/TerminalBadge";
-import { MagneticButton } from "@/components/MagneticButton";
 import { useReducedMotion } from "@/lib/useReducedMotion";
 import { cn } from "@/lib/utils";
 
@@ -92,22 +91,26 @@ export function Hero() {
         </motion.div>
 
         <motion.div variants={itemVariants} className="mt-10 flex flex-wrap gap-3">
-          <MagneticButton
+          <a
             href="/projects"
             className={cn(buttonVariants({ size: "lg" }))}
           >
-            see what i've built
-            <ArrowRight className="h-4 w-4" />
-          </MagneticButton>
-          <MagneticButton
+            <span className="inline-flex items-center justify-center gap-2">
+              see what i've built
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </a>
+          <a
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
           >
-            <FileText className="h-4 w-4" />
-            resume
-          </MagneticButton>
+            <span className="inline-flex items-center justify-center gap-2">
+              <FileText className="h-4 w-4" />
+              resume
+            </span>
+          </a>
         </motion.div>
 
         <motion.div
