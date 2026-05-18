@@ -65,38 +65,36 @@ export function MagneticButton({
     };
   }, [radius, strength, reduced, x, y]);
 
-  const inner = (
-    <motion.span
-      className="inline-flex items-center justify-center gap-2"
-      style={reduced ? undefined : { x: sx, y: sy }}
-    >
-      {children}
-    </motion.span>
-  );
+  // Transform is applied to the outer element so the whole button moves as
+  // one unit. Applying it to an inner span would make the text slide around
+  // inside a stationary frame — not what a magnetic button should do.
+  const motionStyle = reduced ? undefined : { x: sx, y: sy };
 
   if (href) {
     return (
-      <a
+      <motion.a
         ref={ref}
         href={href}
         target={target}
         rel={rel}
         onClick={onClick}
         className={cn(className)}
+        style={motionStyle}
       >
-        {inner}
-      </a>
+        {children}
+      </motion.a>
     );
   }
 
   return (
-    <button
+    <motion.button
       ref={ref}
       type="button"
       onClick={onClick}
       className={cn(className)}
+      style={motionStyle}
     >
-      {inner}
-    </button>
+      {children}
+    </motion.button>
   );
 }
