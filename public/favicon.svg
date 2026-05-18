@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
-  <title>K favicon</title>
-  <rect width="64" height="64" rx="14" fill="#16A34A"/>
-  <path d="M18 46V18h8v12l11-12h10L34 32l14 14H37L26 35v11h-8z" fill="#FFFFFF"/>
+  <title>$_ — kirby</title>
+  <rect width="64" height="64" rx="14" fill="#18181b"/>
+  <text x="32" y="46" text-anchor="middle"
+        font-family="ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
+        font-size="40" font-weight="700" fill="#22c55e"
+        letter-spacing="-1.5">$_</text>
 </svg>

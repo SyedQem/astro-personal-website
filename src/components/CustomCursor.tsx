@@ -44,9 +44,11 @@ export function CustomCursor() {
     };
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
+    document.documentElement.classList.add("cursor-none");
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
+      document.documentElement.classList.remove("cursor-none");
     };
   }, [reduced, x, y]);
 

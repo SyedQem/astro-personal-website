@@ -236,6 +236,14 @@
   transform: translateY(-2px);
 }
 
+/* Native cursor is hidden while the custom follower dot is active.
+   Toggled from CustomCursor.tsx so touch / mobile / reduced-motion
+   users (who never get the dot) keep their system cursor. */
+html.cursor-none,
+html.cursor-none * {
+  cursor: none !important;
+}
+
 /* Cursor-follow radial highlight — used on Hero */
 .cursor-light {
   position: relative;
