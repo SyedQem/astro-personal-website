@@ -30,6 +30,10 @@ export function CustomCursor() {
     }
     setEnabled(true);
 
+    const hideNativeCursor = () => {
+      document.documentElement.classList.add("cursor-none");
+    };
+
     const onMove = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -42,12 +46,20 @@ export function CustomCursor() {
       );
       setHovering(!!interactive);
     };
+    // View transitions swap <html> attributes on navigation, which strips
+    // cursor-none — re-apply before paint (same pattern as the theme script).
+    const onAfterSwap = () => {
+      hideNativeCursor();
+    };
+
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
-    document.documentElement.classList.add("cursor-none");
+    document.addEventListener("astro:after-swap", onAfterSwap);
+    hideNativeCursor();
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
+      document.removeEventListener("astro:after-swap", onAfterSwap);
       document.documentElement.classList.remove("cursor-none");
     };
   }, [reduced, x, y]);

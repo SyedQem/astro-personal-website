@@ -5,7 +5,6 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { WhatImBuilding } from "@/components/WhatImBuilding";
 import { Marquee } from "@/components/Marquee";
 import { Reveal } from "@/components/Reveal";
-import { MagneticButton } from "@/components/MagneticButton";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const allprojects: CollectionEntry<"projects">[] = await getCollection("projects");
@@ -87,16 +86,15 @@ const marqueeItems = [
 
       <Reveal client:visible delay={0.16}>
         <div class="mt-12 flex justify-center">
-          <MagneticButton
+          <a
             href="/projects"
-            className="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card/60 px-6 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-foreground/30 hover:bg-accent"
-            client:visible
+            class="group inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card/60 px-6 text-sm font-medium text-foreground backdrop-blur-sm transition-all hover:border-foreground/30 hover:bg-accent"
           >
             see all projects
             <span class="font-mono text-primary transition-transform group-hover:translate-x-0.5">
               →
             </span>
-          </MagneticButton>
+          </a>
         </div>
       </Reveal>
     </section>
@@ -116,31 +114,28 @@ const marqueeItems = [
             just nerd out about clean code. find me below.
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
-            <MagneticButton
-              href="mailto:williamarcesilaus@gmail.com"
-              className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90"
-              client:visible
+            <a
+              href="mailto:qurbemuhammadsyed@cmail.carleton.ca"
+              class="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90"
             >
               send an email →
-            </MagneticButton>
-            <MagneticButton
+            </a>
+            <a
               href="https://www.linkedin.com/in/qems"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-border px-5 text-sm font-medium text-foreground transition-all hover:bg-accent"
-              client:visible
+              class="inline-flex h-10 items-center gap-2 rounded-lg border border-border px-5 text-sm font-medium text-foreground transition-all hover:bg-accent"
             >
               linkedin
-            </MagneticButton>
-            <MagneticButton
+            </a>
+            <a
               href="https://github.com/SyedQem"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 items-center gap-2 rounded-lg border border-border px-5 text-sm font-medium text-foreground transition-all hover:bg-accent"
-              client:visible
+              class="inline-flex h-10 items-center gap-2 rounded-lg border border-border px-5 text-sm font-medium text-foreground transition-all hover:bg-accent"
             >
               github
-            </MagneticButton>
+            </a>
           </div>
         </div>
       </Reveal>

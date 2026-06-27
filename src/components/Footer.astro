@@ -4,6 +4,11 @@ const year = new Date().getFullYear();
 
 <footer class="mt-20 border-t border-border">
   <div class="mx-auto max-w-6xl px-6 py-10">
+    <!-- 613 Webring — Ottawa's builders, linked in a ring -->
+    <div class="mb-8 flex justify-center">
+      <div id="webring-613"></div>
+    </div>
+
     <div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
       <div>
         <a
@@ -44,3 +49,28 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<!-- 613 Webring loader. The widget.js script self-mounts once on load, but the
+     site uses view transitions (the footer is re-rendered on every navigation),
+     so we (re)inject it on each astro:page-load. data-theme is matched to the
+     site's resolved theme (dark unless the user explicitly chose light). A live
+     theme toggle mid-page won't restyle the widget; it corrects on next nav. -->
+<script is:inline>
+  (function () {
+    function mountWebring() {
+      var target = document.getElementById("webring-613");
+      if (!target) return;
+      target.innerHTML = "";
+      var theme = "dark";
+      try {
+        theme = localStorage.getItem("theme") === "light" ? "light" : "dark";
+      } catch (_) {}
+      var s = document.createElement("script");
+      s.src = "https://613-web-ring.vercel.app/widget.js";
+      s.setAttribute("data-theme", theme);
+      s.setAttribute("data-target", "#webring-613");
+      target.appendChild(s);
+    }
+    document.addEventListener("astro:page-load", mountWebring);
+  })();
+</script>

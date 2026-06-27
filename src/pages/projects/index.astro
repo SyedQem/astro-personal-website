@@ -5,13 +5,6 @@ import { Reveal } from "@/components/Reveal";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 const projects: CollectionEntry<"projects">[] = await getCollection("projects");
-const prioritizedSlug = "applykit";
-
-projects.sort((a, b) => {
-  if (a.slug === prioritizedSlug) return -1;
-  if (b.slug === prioritizedSlug) return 1;
-  return 0;
-});
 ---
 
 <Layout title="projects — qurb e muhammad syed">
