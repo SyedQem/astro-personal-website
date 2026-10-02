@@ -1,23 +1,22 @@
 ---
 title: "Darwin"
-description: "Verified marketplace for Canadian university students — student-gated access, Stripe Connect escrow, and a live founding-tier waitlist."
-role: "founding team"
-stack: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "Postgres", "Stripe", "Vercel"]
+description: "Designed and built the website for Darwin — translating the product story into a focused, fast site that gets out of the way."
+role: "web design & build"
+stack: ["Web Design", "Frontend", "Tailwind CSS"]
 repo: "https://github.com/SyedQem/darwin"
-demo: "https://darwinmarketplace.ca"
+demo: "https://darwinmarket.vercel.app"
 featured: true
 ---
 
 ## Overview
-Darwin is a verified marketplace for Canadian university students. Access is gated with a student email, a student ID, and a face photo, so the people on both sides of a listing are actually students.
+I designed and built the site for Darwin end-to-end. The brief was to take the product story and turn it into a site that's fast, focused, and converts — without any of the bloat that usually creeps into startup pages.
 
-## What I built
-- A verification flow that checks student email, student ID, and a face photo before someone can use the marketplace
-- An escrow payment flow on Stripe Connect that holds funds when an order is placed and releases them only after the buyer and seller both confirm the handoff in-app
-- The waitlist at darwinmarketplace.ca, including a paid founding-tier whitelist — checkout moved from Lemon Squeezy to Stripe, with claims processed through a live webhook
-- The product with a 5-person founding team, through an MVP launch at Carleton and incubator applications to Hatch and Lead to Win
+## What I did
+- Established the visual direction and design system for the site
+- Built the full responsive frontend
+- Tightened the narrative flow from hero through to call-to-action
 
 ## Design notes
-- **Trust before listings:** verification is the front door, not a setting buried in a profile.
-- **Money stays put:** escrow only releases after both sides confirm the handoff.
-- **Waitlist as a product:** the founding tier is a real checkout, not a fake email form.
+- **Clarity first:** every section earns its place. If it didn't move the story forward, it got cut.
+- **Performance as a feature:** lightweight stack, minimal client-side JS, fast paints.
+- **Brand-consistent:** type, color, and layout patterns reinforce the Darwin identity across every page.

@@ -16,9 +16,9 @@ export function WhatImBuilding() {
           className="h-full"
         >
           <div className="flex flex-wrap gap-1.5 pt-1">
-            <Badge variant="mono">next.js</Badge>
-            <Badge variant="mono">prisma</Badge>
+            <Badge variant="mono">spring</Badge>
             <Badge variant="mono">postgres</Badge>
+            <Badge variant="mono">docker</Badge>
           </div>
         </BentoCard>
       </Reveal>
