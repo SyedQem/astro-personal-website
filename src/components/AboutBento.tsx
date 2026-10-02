@@ -12,16 +12,16 @@ import { Badge } from "@/components/ui/badge";
 import { Reveal } from "@/components/Reveal";
 
 const stack = [
-  "java",
-  "c++",
+  "typescript",
+  "javascript",
   "python",
   "sql",
-  "spring",
-  "postgres",
-  "docker",
-  "astro",
-  "tailwind",
+  "next.js",
   "react",
+  "tailwind",
+  "prisma",
+  "postgres",
+  "vercel",
 ];
 
 const learning = ["distributed systems", "rust", "system design", "design taste"];

@@ -8,7 +8,7 @@ import { useReducedMotion } from "@/lib/useReducedMotion";
 import { cn } from "@/lib/utils";
 
 const headingWords = ["hi,", "i'm", "qurb."];
-const stack = ["java", "c++", "python", "sql", "astro", "tailwind"];
+const stack = ["typescript", "python", "react", "next.js", "tailwind", "postgres"];
 
 const containerVariants = {
   hidden: {},
