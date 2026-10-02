@@ -16,7 +16,7 @@ export function WhatImBuilding() {
           className="h-full"
         >
           <div className="flex flex-wrap gap-1.5 pt-1">
-            <Badge variant="mono">spring</Badge>
+            <Badge variant="mono">node</Badge>
             <Badge variant="mono">postgres</Badge>
             <Badge variant="mono">docker</Badge>
           </div>
